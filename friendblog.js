@@ -11,30 +11,37 @@ if (Meteor.isClient) {
         // return all entries sorted by time
         return Entries.find({}, { sort: { time: -1 }});
     }
-
-// create events for the 'input' template
-Template.input.events = {
-    // map the event (click) for the control for the given selector
-    'click input#sendMessage': function (event) {
-        var user = Meteor.user();
-        if (!user) {
-            return;
+    
+    Template.entries.helpers({
+        currentUserIs: function (username) {
+            var user = Meteor.user();
+            return user.username === username;
         }
- 
-        var message = document.getElementById('message');
-        if (message.value != '') {
-            // add the entry to the list of entries
-            Entries.insert({
-                user: user,
-                message: message.value,
-                time: Date.now()
-            });
- 
-            document.getElementById('message').value = '';
-            message.value = '';
+    });
+    
+    // create events for the 'input' template
+    Template.input.events = {
+        // map the event (click) for the control for the given selector
+        'click input#sendMessage': function (event) {
+            var user = Meteor.user();
+            if (!user) {
+                return;
+            }
+            
+            var message = document.getElementById('message');
+            if (message.value != '') {
+                // add the entry to the list of entries
+                Entries.insert({
+                    user: user,
+                    message: message.value,
+                    time: Date.now()
+                });
+                
+                document.getElementById('message').value = '';
+                message.value = '';
+            }
         }
     }
-}
     
     // create events for the 'entries' template
     Template.entries.events = {

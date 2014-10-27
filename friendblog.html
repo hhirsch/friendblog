@@ -3,7 +3,10 @@
 </head>
 
 <body>
-  {{>loginButtons}}
+  <div class="navbar">
+    {{>loginButtons}}
+  </div>
+  <div class="container">
   <h1>Welcome to the friendblog</h1>
   <strong>
     {{#if currentUser}}
@@ -12,21 +15,42 @@
     <p>Please log-in or register an account to talk to other friendblog users.</p>
     {{/if}}
   </strong>
-{{> entries}}
-
+  {{> entries}}
+  </div>
+  <div class="navbar navbar-fixed-bottom">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        2014 Henry Hirsch
+      </div>
+    </div>
+  </div>
 </body>
 
 <!-- Template for showing the input controls -->
 <template name="input">
-    <p>What are you thinking? <input type="text" id="message"><input type="button" id="sendMessage" value="Send"/></p>
+  <div class="form-group">
+    <label for="message" class="col-sm-2 control-label">What are you thinking?</label>
+    <div class="col-sm-10">
+      <input type="text" id="message" class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <input type="button" id="sendMessage" class="btn btn-default" value="Share"/>
+    </div>
+  </div>
 </template>
  
 <!-- Template for displaying all entries returned -->
 <template name="entries">
-    {{#each entries}}
+  <div class="panel panel-default">
+    <div class="panel-body">
+      {{#each entries}}
        <strong>{{user.username}}:</strong> {{message}}<br>
-    {{/each}}
-    {{#if currentUser}}
-        <p><input type="button" id="clear" value="Delete what everybody said"/></p>
+       {{/each}}
+    </div>
+  </div>
+    {{#if currentUserIs "henry"}}
+        <p><input type="button" id="clear" class="btn" value="Delete what everybody said"/></p>
     {{/if}}
 </template>
