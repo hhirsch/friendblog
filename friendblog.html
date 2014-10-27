@@ -16,6 +16,10 @@
     {{/if}}
   </strong>
   {{> entries}}
+  {{#if currentUser}}
+  {{>friend_info}}
+  {{/if}}
+
   </div>
   <div class="navbar navbar-fixed-bottom">
     <div class="panel panel-default">
@@ -44,7 +48,7 @@
     </div>
     </div>
 </template>
- 
+
 <!-- Template for displaying all entries returned -->
 <template name="entries">
   <div class="panel panel-default">
@@ -57,4 +61,12 @@
     {{#if currentUserIs "henry"}}
         <p><input type="button" id="clear" class="btn" value="Delete what everybody said"/></p>
     {{/if}}
+</template>
+
+<template name="friend_info">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      There are {{users_amount}} other users with you on friendblog.
+    </div>
+  </div>
 </template>

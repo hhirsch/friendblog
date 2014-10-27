@@ -11,6 +11,10 @@ if (Meteor.isClient) {
         // return all entries sorted by time
         return Entries.find({}, { sort: { time: -1 }});
     }
+
+    Template.friend_info.users_amount = function () {
+        return Meteor.users.find().count() - 1;
+    }
     
     Template.entries.helpers({
         currentUserIs: function (username) {
