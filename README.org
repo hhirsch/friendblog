@@ -1,0 +1,15 @@
+* About
+Friendblog is a free and open social network software written in meteor.
+* Quick Start 
+** Install Dependencies
+#+BEGIN_SRC sh
+$ curl https://install.meteor.com/ | sh
+$ git clone git@github.com:hhirsch/friendblog.git
+#+END_SRC
+
+** Run Testserver
+#+BEGIN_SRC sh
+$ meteor
+#+END_SRC
+
+Direct your browser to http://localhost:3000/
