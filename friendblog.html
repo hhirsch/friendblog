@@ -1,0 +1,32 @@
+<head>
+  <title>friendblog</title>
+</head>
+
+<body>
+  {{>loginButtons}}
+  <h1>Welcome to the friendblog</h1>
+  <strong>
+    {{#if currentUser}}
+    {{> input}}
+    {{/if}}
+  </strong>
+{{> entries}}
+
+</body>
+
+<!-- Template for showing the input controls -->
+<template name="input">
+    <p>User: <input type="text" id="user"></p>
+ 
+    <p>Message: <input type="text" id="message"><input type="button" id="sendMessage" value="Send"/></p>
+</template>
+ 
+<!-- Template for displaying all entries returned -->
+<template name="entries">
+    {{#each entries}}
+       <strong>{{user.username}}:</strong> {{message}}<br>
+    {{/each}}
+    {{#if currentUser}}
+        <p><input type="button" id="clear" value="Clear All"/></p>
+    {{/if}}
+</template>
