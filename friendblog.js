@@ -2,6 +2,7 @@
 Entries = new Meteor.Collection('entries');
 
 if (Meteor.isClient) {
+    Meteor.subscribe('userPresence');
     Accounts.ui.config({
         passwordSignupFields: 'USERNAME_AND_EMAIL'
     });
@@ -15,6 +16,24 @@ if (Meteor.isClient) {
     Template.friend_info.users_amount = function () {
         return Meteor.users.find().count() - 1;
     }
+
+    Template.friend_info.users = function () {
+        return Presences;
+    }
+    
+    Template.friend_info.helpers({
+        onlineUsers: function() {
+            
+            var users = _.map(Meteor.presences.find().fetch(), function(user) {
+                return Meteor.users.findOne({_id :user.userId})
+            });
+            
+            return users;
+        },
+        onlineCount: function() {
+            return Meteor.presences.find().count();
+        }
+    });
     
     Template.entries.helpers({
         currentUserIs: function (username) {
@@ -67,5 +86,11 @@ if (Meteor.isServer) {
                 return Entries.remove({});
             }
         });
+    });
+
+    Meteor.publish('userPresence', function() {
+        var filter = {}; 
+
+        return Presences.find(filter, { fields: { state: true, userId: true }});
     });
 }

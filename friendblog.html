@@ -69,4 +69,15 @@
       There are {{users_amount}} other users with you on friendblog.
     </div>
   </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      {{#each onlineUsers}}      
+      <strong>{{> presenceSingle}}</strong>
+      {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="presenceSingle">
+  <p>{{username}}</p>
 </template>
