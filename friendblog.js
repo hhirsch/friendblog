@@ -6,6 +6,27 @@ if (Meteor.isClient) {
     Accounts.ui.config({
         passwordSignupFields: 'USERNAME_AND_EMAIL'
     });
+
+
+    Router.route('/admin', function () {
+    this.layout('defaultLayout', {
+        //set a data context for the whole layout
+        data: {
+            title: 'Master Title'
+        }
+    });     
+        this.render('admin');
+    });    
+
+    Router.route('/', function () {
+    this.layout('defaultLayout', {
+        //set a data context for the whole layout
+        data: {
+            title: 'Master Title'
+        }
+    });     
+        this.render('home');
+    });    
     
     // expose the Entries collection to the entries template (as 'entries')
     Template.entries.entries = function () {
@@ -34,14 +55,19 @@ if (Meteor.isClient) {
             return Meteor.presences.find().count();
         }
     });
-    
+
+    function currentUserIs(username) {
+        var user = Meteor.user();
+        return user.username === username;
+    }
     Template.entries.helpers({
-        currentUserIs: function (username) {
-            var user = Meteor.user();
-            return user.username === username;
-        }
+        currentUserIs: currentUserIs   
     });
-    
+
+    Template.admin.helpers({
+        currentUserIs: currentUserIs
+        
+    });    
     // create events for the 'input' template
     Template.input.events = {
         // map the event (click) for the control for the given selector

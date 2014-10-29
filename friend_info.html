@@ -1,0 +1,14 @@
+<template name="friend_info">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      There are {{users_amount}} other users with you on friendblog.
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      {{#each onlineUsers}}      
+      <strong>{{username}}</strong>
+      {{/each}}
+    </div>
+  </div>
+</template>

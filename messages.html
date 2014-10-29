@@ -1,0 +1,10 @@
+<!-- Template for displaying all entries returned -->
+<template name="entries">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      {{#each entries}}
+       <strong>{{user.username}}:</strong> {{message}}<br>
+       {{/each}}
+    </div>
+  </div>
+</template>

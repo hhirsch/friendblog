@@ -1,0 +1,41 @@
+<template name="defaultLayout">
+
+  <div class="navbar navbar-default">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">friendblog</a>
+    </div>
+    
+    <p class="navbar-text navbar-left">
+      {{>loginButtons}}
+    </p>
+    <p class="navbar-text navbar-left"><a href="/admin">admin</a></p>
+  </div>
+  <div class="container">
+  <h1>Welcome to the friendblog</h1>
+  <strong>
+    {{#if currentUser}}
+    {{> input}}
+    {{else}}
+    <p>Please log-in or register an account to talk to other friendblog users.</p>
+    {{/if}}
+  </strong>
+  <article>
+    {{> yield}}
+  </article>
+  </div>
+  <footer>
+  <div class="navbar navbar-fixed-bottom">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        2014 Henry Hirsch
+      </div>
+    </div>
+  </div>
+  </footer>
+</template>
