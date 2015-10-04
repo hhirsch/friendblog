@@ -9,7 +9,7 @@ if (Meteor.isClient) {
     });
 
     friendblog.setupRouter();
-    
+
     // expose the Entries collection to the entries template (as 'entries')
     Template.entries.entries = function () {
         // return all entries sorted by time
@@ -23,14 +23,14 @@ if (Meteor.isClient) {
     Template.friend_info.users = function () {
         return Presences;
     }
-    
+
     Template.friend_info.helpers({
         onlineUsers: function() {
-            
+
             var users = _.map(Meteor.presences.find().fetch(), function(user) {
                 return Meteor.users.findOne({_id :user.userId})
             });
-            
+
             return users;
         },
         onlineCount: function() {
@@ -43,13 +43,13 @@ if (Meteor.isClient) {
         return user.username === username;
     }
     Template.entries.helpers({
-        currentUserIs: currentUserIs   
+        currentUserIs: currentUserIs
     });
 
     Template.admin.helpers({
         currentUserIs: currentUserIs
-        
-    });    
+
+    });
     // create events for the 'input' template
     Template.input.events = {
         // map the event (click) for the control for the given selector
@@ -58,7 +58,7 @@ if (Meteor.isClient) {
             if (!user) {
                 return;
             }
-            
+
             var message = document.getElementById('message');
             if (message.value != '') {
                 // add the entry to the list of entries
@@ -67,13 +67,13 @@ if (Meteor.isClient) {
                     message: message.value,
                     time: Date.now()
                 });
-                
+
                 document.getElementById('message').value = '';
                 message.value = '';
             }
         }
     }
-    
+
     // create events for the 'entries' template
     Template.entries.events = {
         // map the event (click) for the control for the given selector
@@ -83,7 +83,7 @@ if (Meteor.isClient) {
             Meteor.call('removeAllEntries');
         }
     }
-    
+
 }
 
 if (Meteor.isServer) {
@@ -91,7 +91,7 @@ if (Meteor.isServer) {
         sendVerificationEmail: true
     });
 
-    
+
     Meteor.startup(function () {
         // define some methods on the server
         return Meteor.methods({
@@ -102,7 +102,7 @@ if (Meteor.isServer) {
     });
 
     Meteor.publish('userPresence', function() {
-        var filter = {}; 
+        var filter = {};
 
         return Presences.find(filter, { fields: { state: true, userId: true }});
     });
