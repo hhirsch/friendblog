@@ -9,9 +9,9 @@ Friendblog.prototype.setupRouter = function() {
         data: {
             title: 'Master Title'
         }
-    });     
+    });
         this.render('admin');
-    });    
+    });
 
     Router.route('/', function () {
     this.layout('defaultLayout', {
@@ -19,7 +19,7 @@ Friendblog.prototype.setupRouter = function() {
         data: {
             title: 'Master Title'
         }
-    });     
+    });
         this.render('home');
-    });    
+    });
 };
