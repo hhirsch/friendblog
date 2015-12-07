@@ -1,7 +1,7 @@
+#+ATTR_HTML: title="Join the chat at https://gitter.im/hhirsch/friendblog"
+  [[https://gitter.im/hhirsch/friendblog?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge][file:https://badges.gitter.im/Join%20Chat.svg]]
 * About
 
-  #+ATTR_HTML: title="Join the chat at https://gitter.im/hhirsch/friendblog"
-  [[https://gitter.im/hhirsch/friendblog?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge][file:https://badges.gitter.im/Join%20Chat.svg]]
 Friendblog is a free and open social network software written in meteor.
 * Quick Start 
 ** Install Dependencies
